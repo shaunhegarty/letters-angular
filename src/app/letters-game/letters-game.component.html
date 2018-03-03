@@ -9,7 +9,8 @@
 <div class="clear"></div>
 
 <div>
-    <label>Word:
-      <input  placeholder="word">
-    </label>
-  </div>
+  <label class="word">Enter a valid word:
+    <input [(ngModel)]="enteredWord" placeholder="word">
+  </label>
+  <button (click)="checkWords(enteredWord)">Check</button>
+</div>
