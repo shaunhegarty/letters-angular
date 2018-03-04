@@ -2,7 +2,7 @@
 <div class="letter">
   <ul>
     <li *ngFor="let letter of lettersMix.split('')">
-      <button >{{letter}}</button>
+      <button >{{letter.toUpperCase()}}</button>
     </li>
   </ul>
 </div>
@@ -10,7 +10,14 @@
 
 <div>
   <label class="word">Enter a valid word:
-    <input [(ngModel)]="enteredWord" placeholder="word">
+    <input
+    [(ngModel)]="enteredWord"
+    placeholder="word"
+    (keyup)="$event.keyCode == 13 && checkWords(enteredWord)">
   </label>
-  <button (click)="checkWords(enteredWord)">Check</button>
+  <!-- <button (click)="checkWords(enteredWord)">Check</button> -->
+</div>
+
+<div id="message">
+  Check the validity of the word
 </div>

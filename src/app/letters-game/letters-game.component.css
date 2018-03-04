@@ -3,16 +3,16 @@
   position: relative;
   width: 100%;
   padding: 0px;
-  padding-left: 0px;
+  margin: 0px;
 
 }
 
 .letter ul{
   list-style-type: none;
-  /* margin-left:auto; */
+  padding-left: 0;
   margin-right: auto;
   margin-left: auto;
-  width: fit-content;
+  width: max-content;
 }
 
 .letter li {
@@ -25,6 +25,7 @@
   color: aliceblue;
   border: mintcream;
   text-align: center;
+  font-weight: bolder;
   font-size: 16pt;
   width: 1.5em;
   height: 1.5em;
@@ -33,6 +34,12 @@
 .letter button:hover {
   background-color: #5599FF;
 }
+
+.letter button:active {
+  background-color: #EEEEEE;
+  color:#0056FF;
+}
+
 
 .clear {
   clear: both;
@@ -45,10 +52,19 @@
 
 .word input {
   box-sizing: border-box;
+  text-transform: uppercase;
+  text-align: center;
   width: 80%;
   padding: 12px 20px;
   margin-top: 2em;
+  margin-bottom: 2em;
 
   font-size: 14pt;
   /* margin */
 }
+
+#message {
+  font-family: sans-serif;
+  color: darkred;
+}
+
