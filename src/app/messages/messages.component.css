@@ -1,0 +1,11 @@
+.message {
+  font-family: sans-serif;
+  border: white;
+  padding: 5px;
+  background-color: rgb(228, 228, 228);
+  border-style: solid;
+  /* border-bottom-style: none; */
+  border-width: 1.5px;
+  color: darkblue;
+  white-space: pre;
+}
