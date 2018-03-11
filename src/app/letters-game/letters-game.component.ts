@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LetterPile } from './letter-pile';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-letters-game',
@@ -9,10 +11,10 @@ import { LetterPile } from './letter-pile';
 export class LettersGameComponent implements OnInit {
 
   lettersMix = '';
-
   enteredWord = '';
+  valid: Word;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.lettersMix += LetterPile.getRandomMix(9).toString();
     console.log(this.lettersMix);
   }
@@ -22,12 +24,39 @@ export class LettersGameComponent implements OnInit {
   }
 
   checkWords(innerWord: String): void {
+    this.clearlog();
     const contains = this.isWordContainingWord(innerWord, this.lettersMix);
     let message: String = '';
     message = innerWord.toUpperCase() + (contains ? ' is in ' : ' is NOT in ') + this.lettersMix.toUpperCase();
+    this.log(message);
+
+    this.checkWordValid(innerWord);
+
+  }
+
+  log(message: String): void {
     console.log(message);
     const messageBox: HTMLElement = document.getElementById('message');
-    messageBox.textContent = message.toString();
+    messageBox.textContent += '\n\r' + message.toString();
+  }
+
+  clearlog(): void {
+    const messageBox: HTMLElement = document.getElementById('message');
+    messageBox.textContent = '';
+  }
+
+  checkWordValid(word: String): void {
+    const that = this;
+    const url = 'http://api.shaunhegarty.com/validate/' + word;
+    // let val: {};
+    this.http.get<Word>(url).subscribe(function(data) {
+      let message: String = word + ' is ';
+      if (!data.valid) {
+        message += 'not ';
+      }
+      message += 'in the dictionary';
+      that.log(message);
+    });
   }
 
   isWordContainingWord(innerWord: String, outerWord: String): boolean {
@@ -65,4 +94,8 @@ export class LettersGameComponent implements OnInit {
 
   }
 
+}
+
+export interface Word {
+  valid: boolean;
 }
