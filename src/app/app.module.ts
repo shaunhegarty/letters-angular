@@ -9,20 +9,23 @@ import { AppComponent } from './app.component';
 import { LettersGameComponent } from './letters-game/letters-game.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './message.service';
+import { GameService } from './game.service';
+import { LettersMixComponent } from './letters-mix/letters-mix.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LettersGameComponent,
-    MessagesComponent
+    MessagesComponent,
+    LettersMixComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule
   ],
-  providers: [WordService, MessageService],
+  providers: [WordService, MessageService, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

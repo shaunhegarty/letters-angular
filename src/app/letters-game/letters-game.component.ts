@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { WordService } from '../word.service';
 import { MessageService } from '../message.service';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-letters-game',
@@ -12,24 +13,18 @@ import { MessageService } from '../message.service';
 })
 export class LettersGameComponent implements OnInit {
 
-  lettersMix = '';
   enteredWord = '';
 
-  constructor(private wordService: WordService, private messageService: MessageService) {
-    this.lettersMix += LetterPile.getRandomMix(9).toString();
-    console.log(this.lettersMix);
-  }
+  constructor(private wordService: WordService, private messageService: MessageService, private gameService: GameService) {  }
 
   ngOnInit() {
 
   }
 
-  checkWords(innerWord: String): void {
-    this.clearlog();
-    const contains = this.wordService.isWordContainingWord(innerWord, this.lettersMix);
-    const message: String = innerWord.toUpperCase() + (contains ? ' is in ' : ' is NOT in ') + this.lettersMix.toUpperCase();
-    this.log(message);
 
+  checkWords(innerWord: String): void {
+    this.messageService.clear();
+    this.wordService.checkWordInWord(innerWord, this.gameService.getCurrentMix());
     this.wordService.checkWordValid(innerWord);
 
   }

@@ -1,12 +1,5 @@
 
-<div class="letter">
-  <ul>
-    <li *ngFor="let letter of lettersMix.split('')">
-      <button >{{letter.toUpperCase()}}</button>
-    </li>
-  </ul>
-</div>
-<div class="clear"></div>
+<app-letters-mix></app-letters-mix>
 
 <div>
   <label class="word">Enter a valid word:
@@ -15,7 +8,6 @@
     placeholder="word"
     (keyup)="$event.keyCode == 13 && checkWords(enteredWord)">
   </label>
-  <!-- <button (click)="checkWords(enteredWord)">Check</button> -->
 </div>
 
 

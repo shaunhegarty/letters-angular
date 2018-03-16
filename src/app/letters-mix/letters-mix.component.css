@@ -1,0 +1,41 @@
+.letter {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+
+}
+
+.letter ul{
+  list-style-type: none;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: max-content;
+}
+
+.letter li {
+  float: left;
+  padding: 2px;
+}
+
+.letter button {
+  background-color: #0056FF;
+  color: aliceblue;
+  border: mintcream;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 16pt;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.letter button:hover {
+  background-color: #5599FF;
+}
+
+.letter button:active {
+  background-color: #EEEEEE;
+  color:#0056FF;
+}
