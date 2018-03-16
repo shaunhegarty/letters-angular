@@ -13,6 +13,7 @@ import { GameService } from './game.service';
 import { LettersMixComponent } from './letters-mix/letters-mix.component';
 import { LettersSubmitComponent } from './letters-submit/letters-submit.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { RoundHistoryComponent } from './round-history/round-history.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
     MessagesComponent,
     LettersMixComponent,
     LettersSubmitComponent,
-    ScoreboardComponent
+    ScoreboardComponent,
+    RoundHistoryComponent
   ],
   imports: [
     BrowserModule,

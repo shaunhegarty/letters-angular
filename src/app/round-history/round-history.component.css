@@ -1,0 +1,56 @@
+div {
+  margin: 0px;
+  padding: 0px;
+  font-size: 18px;
+  font-family: sans-serif;
+}
+
+.history {
+  padding-top: 50px;
+}
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+li.history-header {
+  background-color: steelblue;
+  color: seashell;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+li {
+  display: block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /* background-color: slateblue; */
+
+  /* margin-right: auto; */
+  /* width: max-content; */
+}
+
+li div {
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: white;
+  display: block;
+  margin: 0;
+  float: left;
+  /* padding: 2%; */
+  text-align: left;
+  /* background-color: slategrey; */
+  width: 60%;
+  /* width: max-content; */
+}
+
+li div.score {
+  text-align: right;
+  width: fit-content;
+}
+
+li div.word {
+  width: 30%;
+}
+

@@ -25,36 +25,41 @@ export class GameService {
     return this.currentMix;
   }
 
-  submitRound(enteredWord: String, valid: boolean) {
-    const round: Round = {
-      word: enteredWord,
-      mix: this.currentMix.toString(),
-      score: valid ? enteredWord.length : 0
-    };
+  submitRound(round: Round, valid: boolean) {
+    round.score = valid ? round.word.length : 0;
 
     if (round.score === 9) {
       round.score = round.score * 2;
     }
 
-    this.roundHistory.concat(round);
+    this.roundHistory.push(round);
+    while (this.roundHistory.length > 20) {
+      this.roundHistory.shift();
+    }
     this.currentScore += round.score;
     this.messageService.add('Got ' + round.score + ' points. Total: ' + this.currentScore);
   }
 
-  submitWord(word: String): void {
-    if (this.checkWordInWord(word, this.currentMix)) {
-      const url = 'http://api.shaunhegarty.com/validate/' + word;
-      this.http.get<Word>(url).subscribe(data => this.receiveWord(word, data.valid));
+  submitWord(enteredWord: String): void {
+    const round: Round = {
+      word: enteredWord,
+      mix: this.currentMix,
+      score: enteredWord.length
+    };
+
+    if (this.checkWordInWord(enteredWord, this.currentMix)) {
+      const url = 'http://api.shaunhegarty.com/validate/' + enteredWord;
+      this.http.get<Word>(url).subscribe(data => this.receiveWord(round, data.valid));
     } else {
-      this.receiveWord(word, false);
+      this.receiveWord(round, false);
     }
     this.newMix(9);
   }
 
-  receiveWord(word: String, valid: boolean) {
-    const message: String = word + ' is ' + (!valid ? 'not ' : '') + 'in the dictionary';
+  receiveWord(round: Round, valid: boolean) {
+    const message: String = round.word + ' is ' + (!valid ? 'not ' : '') + 'in the dictionary';
     this.messageService.add(message.toUpperCase());
-    this.submitRound(word, valid);
+    this.submitRound(round, valid);
   }
 
   checkWordInWord(innerWord: String, outerWord: String): boolean {
@@ -72,6 +77,10 @@ export class GameService {
 
   getCurrentScore(): number {
     return this.currentScore;
+  }
+
+  getRoundHistory(): Round[] {
+    return this.roundHistory;
   }
 
 }

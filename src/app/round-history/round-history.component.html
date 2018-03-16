@@ -1,0 +1,11 @@
+<div class="history">
+  <ul>
+    <li class="history-header">Round History</li>
+    <li *ngFor="let round of getHistory()">
+      <div>{{round.mix}}</div>
+      <div class = "word">{{round.word.toUpperCase()}}</div>
+      <div class="score">{{round.score}}</div>
+    </li>
+  </ul>
+</div>
+<div class="clear"></div>
