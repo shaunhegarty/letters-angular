@@ -1,3 +1,9 @@
-<p>
-  letters-submit works!
-</p>
+<div>
+  <label class="word">
+    <input
+    [(ngModel)]="enteredWord"
+    placeholder="Enter a valid word"
+    (keyup)="$event.keyCode == 13 && checkWords(enteredWord)">
+  </label>
+  <button (click)="submitWord()">Submit</button>
+</div>

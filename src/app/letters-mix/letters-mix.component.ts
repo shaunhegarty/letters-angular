@@ -10,11 +10,8 @@ import { GameService } from '../game.service';
 })
 export class LettersMixComponent implements OnInit {
 
-  lettersMix: String = '';
-
   constructor(private gameService: GameService, private messageService: MessageService) {
     this.setLettersMix();
-    console.log(this.lettersMix);
   }
 
   ngOnInit() {
@@ -22,7 +19,11 @@ export class LettersMixComponent implements OnInit {
 
 
   setLettersMix(): void {
-    this.lettersMix = this.gameService.newMix(9);
+    this.gameService.newMix(9);
+  }
+
+  getLettersMix(): String {
+    return this.gameService.getCurrentMix();
   }
 
 }

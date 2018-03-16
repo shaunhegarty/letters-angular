@@ -1,0 +1,34 @@
+.board {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* margin: 0px;
+  padding: 0px;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1.5em;
+  padding: 10px; */
+
+  width: 80%;
+  margin: auto;
+}
+
+.score-label {
+  /* background-color: whitesmoke;
+  padding: 10px; */
+  width: 70%;
+  background: #DDDDEE;
+  padding: 10px;
+  float: left;
+}
+
+.score {
+  /* float: right;
+  background-color: #DDDDEE;
+  width: auto;
+  padding: 10px;
+  width: 20pc; */
+  margin-left: 70%;
+  background:#EFEFEF;
+  padding: 10px;
+
+}

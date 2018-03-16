@@ -12,6 +12,7 @@ import { MessageService } from './message.service';
 import { GameService } from './game.service';
 import { LettersMixComponent } from './letters-mix/letters-mix.component';
 import { LettersSubmitComponent } from './letters-submit/letters-submit.component';
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { LettersSubmitComponent } from './letters-submit/letters-submit.componen
     LettersGameComponent,
     MessagesComponent,
     LettersMixComponent,
-    LettersSubmitComponent
+    LettersSubmitComponent,
+    ScoreboardComponent
   ],
   imports: [
     BrowserModule,
