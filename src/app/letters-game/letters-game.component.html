@@ -8,6 +8,7 @@
     placeholder="word"
     (keyup)="$event.keyCode == 13 && checkWords(enteredWord)">
   </label>
+  <button (click)="submitWord()">Submit</button>
 </div>
 
 

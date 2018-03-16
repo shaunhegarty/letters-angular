@@ -11,6 +11,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './message.service';
 import { GameService } from './game.service';
 import { LettersMixComponent } from './letters-mix/letters-mix.component';
+import { LettersSubmitComponent } from './letters-submit/letters-submit.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { LettersMixComponent } from './letters-mix/letters-mix.component';
     AppComponent,
     LettersGameComponent,
     MessagesComponent,
-    LettersMixComponent
+    LettersMixComponent,
+    LettersSubmitComponent
   ],
   imports: [
     BrowserModule,

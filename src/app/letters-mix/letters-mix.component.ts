@@ -13,7 +13,7 @@ export class LettersMixComponent implements OnInit {
   lettersMix: String = '';
 
   constructor(private gameService: GameService, private messageService: MessageService) {
-    this.setLettersMix(9);
+    this.setLettersMix();
     console.log(this.lettersMix);
   }
 
@@ -21,7 +21,7 @@ export class LettersMixComponent implements OnInit {
   }
 
 
-  setLettersMix(size: number): void {
+  setLettersMix(): void {
     this.lettersMix = this.gameService.newMix(9);
   }
 

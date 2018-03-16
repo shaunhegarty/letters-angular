@@ -39,3 +39,7 @@
   background-color: #EEEEEE;
   color:#0056FF;
 }
+
+.clear {
+  clear: both;
+}

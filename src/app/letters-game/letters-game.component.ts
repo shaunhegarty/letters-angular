@@ -21,10 +21,15 @@ export class LettersGameComponent implements OnInit {
 
   }
 
+  submitWord() {
+    this.messageService.clear();
+    this.gameService.checkWordInWord(this.enteredWord, this.gameService.getCurrentMix());
+    this.gameService.submitWord(this.enteredWord);
+  }
 
   checkWords(innerWord: String): void {
     this.messageService.clear();
-    this.wordService.checkWordInWord(innerWord, this.gameService.getCurrentMix());
+    this.gameService.checkWordInWord(innerWord, this.gameService.getCurrentMix());
     this.wordService.checkWordValid(innerWord);
 
   }

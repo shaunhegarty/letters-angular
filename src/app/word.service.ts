@@ -11,10 +11,6 @@ export class WordService {
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
-  getLettersMix(size: number): String {
-    return LetterPile.getRandomMix(size).toString();
-  }
-
   isWordContainingWord(innerWord: String, outerWord: String): boolean {
     if (!innerWord || !outerWord || !innerWord.length || !outerWord.length) {
       throw new Error('isWordContainingWord requires two strings to be passed.');
@@ -50,28 +46,9 @@ export class WordService {
 
   }
 
-  checkWordInWord(innerWord: String, outerWord: String): boolean {
-    const contains = this.isWordContainingWord(innerWord, outerWord);
-    const message: string = innerWord.toUpperCase()
-      + (contains ? ' IS IN ' : ' IS NOT IN ')
-      + outerWord.toUpperCase();
-    this.messageService.add(message);
-    return contains;
-  }
-
   checkWordValid(word: String): void {
-    const that = this;
     const url = 'http://api.shaunhegarty.com/validate/' + word;
     this.http.get<Word>(url).subscribe(data => this.checkWord(word, data));
-    // let val: {};
-    // this.http.get<Word>(url).subscribe(function(data) {
-    //   let message: string = word + ' is ';
-    //   if (!data.valid) {
-    //     message += 'not ';
-    //   }
-    //   message += 'in the dictionary';
-    //   that.messageService.add(message.toUpperCase());
-    // });
   }
 
   checkWord(word: String, data: Word) {
