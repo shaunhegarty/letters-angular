@@ -19,7 +19,9 @@ export class LettersSubmitComponent implements OnInit {
   }
 
   submitWord() {
+
     this.messageService.clear();
+    this.gameService.getBestWords(this.gameService.getCurrentMix());
     this.gameService.submitWord(this.enteredWord);
   }
 

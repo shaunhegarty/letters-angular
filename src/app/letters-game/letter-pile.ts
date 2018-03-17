@@ -10,6 +10,11 @@ export class LetterPile {
   vowels: Array<String> = new Array;
 
   public static getRandomMix(size: number): String {
+    const pile: LetterPile = new LetterPile();
+    return pile.getMix(size);
+  }
+
+  public getMix(size: number): String {
     if (size > 15 || size < 0) {
       throw new Error('size: ' + size + ' is invalid');
     }
@@ -23,24 +28,20 @@ export class LetterPile {
     let vowelCount = 0;
 
     while ( consCount + vowelCount < size) {
-      const pile: LetterPile = new LetterPile();
       let letter = '';
       if (Math.floor(Math.random() * 2) === 1
-        && consCount <= Math.floor(size * 7.0 / 9.0)
-        || vowelCount >= Math.floor(size * 6.0 / 9.0)) {
-        letter = pile.getConsonant().toString();
+        && (consCount <= Math.floor(size * 7.0 / 9.0)
+        || vowelCount >= Math.floor(size * 6.0 / 9.0))) {
+        letter = this.getConsonant().toString();
         consCount++;
       } else {
-        letter = pile.getVowel().toString();
+        letter = this.getVowel().toString();
         vowelCount++;
       }
       mix = mix.concat(letter);
-      console.log(letter);
     }
     console.log(mix);
-
     return mix;
-
   }
 
   private fillConsonants(): void {
@@ -92,14 +93,14 @@ export class LetterPile {
   public getConsonant(): String {
     const index = Math.floor(Math.random() * this.consonants.length);
     const letter = this.consonants[index];
-    this.consonants = this.consonants.splice(index, 1);
+    this.consonants.splice(index, 1);
     return letter;
   }
 
   public getVowel(): String {
     const index = Math.floor(Math.random() * this.vowels.length);
     const letter = this.vowels[index];
-    this.vowels = this.vowels.splice(index, 1);
+    this.vowels.splice(index, 1);
     return letter;
   }
 

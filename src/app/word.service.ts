@@ -65,3 +65,8 @@ export class WordService {
 export interface Word {
   valid: boolean;
 }
+
+export interface SubAnagrams {
+  max: number;
+  words: Map<String, number>;
+}

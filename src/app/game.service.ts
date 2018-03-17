@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { WordService, Word } from './word.service';
+import { WordService, Word, SubAnagrams } from './word.service';
 import { MessageService } from './message.service';
 import { LetterPile } from './letters-game/letter-pile';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class GameService {
+  // TODO cancel unfinished subscriptions if new subscriptions are started
 
   currentMix: String = '';
   currentScore = 0;
@@ -31,7 +32,7 @@ export class GameService {
     if (round.score === 9) {
       round.score = round.score * 2;
     }
-
+//  oRiAwevB0uGkeN4GJuI1zTSI6wnewDeWMfBkunte
     this.roundHistory.push(round);
     while (this.roundHistory.length > 20) {
       this.roundHistory.shift();
@@ -60,6 +61,36 @@ export class GameService {
     const message: String = round.word + ' is ' + (!valid ? 'not ' : '') + 'in the dictionary';
     this.messageService.add(message.toUpperCase());
     this.submitRound(round, valid);
+  }
+
+
+  getBestWords(mix: String): void {
+    const url = 'http://api.shaunhegarty.com/subanagrams/' + mix;
+    console.log('Looking for best words');
+    this.http.get(url).subscribe(data => this.bestWordMessage(data));
+  }
+
+  bestWordMessage(data: Object): void {
+    const json = JSON.parse(JSON.stringify(data));
+    let bestWords: String = ' ';
+    for (const key of Object.keys(json.words)) {
+      if (json.words[key] === json.max) {
+          bestWords = bestWords.concat(', ');
+          bestWords = bestWords.concat(key.toString());
+        }
+        bestWords = bestWords.replace(' , ', '');
+    }
+
+    const bestWordString = 'Best Words: ';
+    const msgs = this.messageService.messages;
+    for (let i = 0; i < msgs.length; i++) {
+      const message = msgs[i];
+      if (message.includes(bestWordString)) {
+        msgs.splice(i, 1);
+      }
+    }
+    this.messageService.messages = msgs;
+    this.messageService.add(bestWordString + bestWords);
   }
 
   checkWordInWord(innerWord: String, outerWord: String): boolean {
